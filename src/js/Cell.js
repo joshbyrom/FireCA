@@ -7,28 +7,29 @@ var Cell = function (cellspace, column, row){
 	var column = column;
 	var row = row;
 	
-	
-	var private = new Object();
+	var get_state = function() {
+		return this.state || 'unknown';
+	}
 	
 	//---------------------------------//
 	//		Neighbors
 	//---------------------------------//
-	private.neighbors = {};
-	private.cache_neighbors = function(range) {
-		private.neighbors.range = cellspace.get_neighbors(range);
+	var neighbors = {};
+	var cache_neighbors = function(range) {
+		this.neighbors.range = cellspace.get_neighbors(this.column, this.row, range);
 	};
 	
 	var get_neighbors = function(range) {
-		if (private_stuff.neighbors.range) return private_stuff.neighbors.range;
+		if (this.neighbors.range) return this.neighbors.range;
 		
-		private_stuff.cache_neighbors(range);
+		this.cache_neighbors(range);
 		
-		return private_stuff.neighbors.range;
+		return this.neighbors.range;
 	};
 	// -- end of neighbors section
 	
 	var as_string = function() {
-		return 'Cell at ' + column + ', ' + row;
+		return 'Cell at ' + this.column + ', ' + this.row + '; in State: ' + this.get_state();
 	};
 };
 
