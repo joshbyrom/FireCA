@@ -2,15 +2,15 @@
  * @author Josh (joshbyrom.com)
  */
 var Cellspace = function(number_of_columns, number_of_rows) {
-	var number_of_columns = number_of_columns;
-	var number_of_rows = number_of_rows;
+	this.number_of_columns = Math.max(number_of_columns, 1);
+	this.number_of_rows = Math.max(number_of_rows, 1);
 	
-	var cells = {};
+	this.cells = [];
 	
 	//-----------------------------//
 	//			Initialization
 	//-----------------------------//
-	var init = function() {
+	this.init = function() {
 		this.cells = new Array();
 		for(var i = 0; i < number_of_columns; ++i) {
 			this.cells[i] = new Array();
@@ -23,26 +23,19 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	//------------------------------//
 	// Neighbors and Cell Retrieval //
 	//------------------------------//
-	var guarded_get = function(guarded) {
-		var shell = function(column, row) {
-			if(this.cells.length == 0) {
-				this.init();
-				return guarded(column, row);
-			} else {
-				var realColumn = (this.number_of_columns + column) % this.number_of_columns;
-				var realRow = (this.number_of_rows + row) % this.number_of_rows;
-				return guarded(realColumn, realRow);
-			}
-		};
-		
-		return shell;
+	this.get_cell_at = function(column, row) {
+		if(this.cells.length == 0) {
+			this.init();
+			return this.get_cell_at(column, row);
+		} else {
+			var realColumn = (this.number_of_columns + column) % this.number_of_columns;
+			var realRow = (this.number_of_rows + row) % this.number_of_rows;
+			return this.cells[realColumn][realRow];
+		}
 	};
+
 	
-	var get_cell_at = guarded_get(function(column, row) {
-		return this.cells[i][k] || shell(column, row);
-	});
-	
-	var get_neighbors = function(column, row, range) {
+	this.get_neighbors = function(column, row, range) {
 		var result = {};
 		var half_range = range * 0.5;
 		
