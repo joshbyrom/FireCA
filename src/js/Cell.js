@@ -16,7 +16,7 @@ var Cell = function (cellspace, column, row){
 	//---------------------------------//
 	this.neighbors = {};
 	this.cache_neighbors = function(range) {
-		this.neighbors.range = cellspace.get_neighbors(this.column, this.row, range);
+		this.neighbors.range = this.cellspace.get_neighborhood(this.column, this.row, range).cells;
 	};
 	
 	this.get_neighbors = function(range) {

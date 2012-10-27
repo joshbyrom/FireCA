@@ -12,11 +12,16 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	//-----------------------------//
 	this.init = function() {
 		this.cells = new Array();
+		
+		var tmp = null;
 		for(var i = 0; i < number_of_columns; ++i) {
-			this.cells[i] = new Array();
+			tmp = new Array();
+			
 			for(var k = 0; k < number_of_rows; ++k) {
-				this.cells[i][k] = new Cell(this, i, k);
+				tmp.push(new Cell(this, i, k));
 			}
+			
+			this.cells.push(tmp);
 		}
 	};
 	
@@ -30,15 +35,17 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		} else {
 			var realColumn = (this.number_of_columns + column) % this.number_of_columns;
 			var realRow = (this.number_of_rows + row) % this.number_of_rows;
+			
+			console.log(realColumn);
 			return this.cells[realColumn][realRow];
 		}
 	};
 
 	
-	this.get_neighbors = function(column, row, range) {
+	this.get_neighborhood = function(column, row, range) {
 		var result = {};
 		var real_range = Math.abs(range);
-		var half_range = real_range * 0.5;
+		var half_range = Math.round(real_range * 0.5);
 		
 		var startColumn = column - half_range;
 		var endColumn = column + half_range;
@@ -49,9 +56,9 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		result.cells = new Array();
 
 		if(range > 0) {
-			for(var i = startColumn; i < endColumn; ++i) {
+			for(var i = startColumn; i <= endColumn; ++i) {
 				result.cells.push(new Array());
-				for(var j = startRow; j < endRow; ++j) {
+				for(var j = startRow; j <= endRow; ++j) {
 					var cell = this.get_cell_at(i, j);
 					
 					if(i == column && j == row) {
