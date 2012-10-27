@@ -37,7 +37,8 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	
 	this.get_neighbors = function(column, row, range) {
 		var result = {};
-		var half_range = range * 0.5;
+		var real_range = Math.abs(range);
+		var half_range = real_range * 0.5;
 		
 		var startColumn = column - half_range;
 		var endColumn = column + half_range;
@@ -46,23 +47,26 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		var endRow = row + half_range;
 		
 		result.cells = new Array();
-		for(var i = startColumn; i < endColumn; ++i) {
-			result.cells.push(new Array());
-			for(var j = startRow; j < endRow; ++j) {
-				var cell = this.get_cell_at(i, j);
-				
-				if(i == column && j == row) {
-					result.center = cell;
+
+		if(range > 0) {
+			for(var i = startColumn; i < endColumn; ++i) {
+				result.cells.push(new Array());
+				for(var j = startRow; j < endRow; ++j) {
+					var cell = this.get_cell_at(i, j);
+					
+					if(i == column && j == row) {
+						result.center = cell;
+					}
+					
+					result.cells[result.cells.length - 1].push(cell);
 				}
-				
-				result.cells[result.cells.length - 1].push(cell);
 			}
 		}
 		
 		result.top = startRow;
 		result.left = startColumn;
-		result.width = Math.abs(endColumn - startColumn);
-		result.height = Math.abs(endRow - startRow);
+		result.width = real_range;
+		result.height = real_range;
 		return result;
 	};
 };
