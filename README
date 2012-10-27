@@ -1,0 +1,35 @@
+       
+                                                                                
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+                              Yet Another Cellular Automata Project
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+                                                                                
+Fire Prediction and Simulation -- An Experiment in JavaScript
+====================================
+
+A two-dimensional CA with uniquely predetermined cell states between time (t) transitions. A simplified model of how a fire spreads and the subsequent regrowth of trees. In the model a cell will be one of three states: empty land, tree-filled land, or burning and on fire.
+
+
+
+Probablistic CA
+-------
+
+The probablity of a tree-filled cell being struck by lighting are: undetermined.
+
+The probablity of a tree-filled cell beside a burning tree-filled cell are: undetermined.
+
+The probablity of a land cell becoming a tree-filled cell are:
+	1. when neighbored by other tree-filled cells: undetermined.
+	2. when not neighbored by any tree-filled cells: undetermined.
+
+
+Notes
+-------
+
+
+For more awesome code, visit http://www.joshbyrom.com/
+
+                                                                       
