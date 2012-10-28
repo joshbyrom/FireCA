@@ -55,8 +55,8 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		result.cells = new Array();
 
 		if(range > 0) {
+			var column_array = new Array();
 			for(var i = start_column; i <= end_column; ++i) {
-				result.cells.push(new Array());
 				for(var j = start_row; j <= end_row; ++j) {
 					var cell = this.get_cell_at(i, j);
 					
@@ -64,8 +64,11 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 						result.center = cell;
 					}
 					
-					result.cells[result.cells.length - 1].push(cell);
+					column_array.push(cell);
 				}
+				
+				result.cells.push(column_array);
+				column_array = new Array();
 			}
 		}
 		
