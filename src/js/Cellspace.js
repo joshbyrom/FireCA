@@ -33,11 +33,10 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 			this.init();
 			return this.get_cell_at(column, row);
 		} else {
-			var realColumn = (this.number_of_columns + column) % this.number_of_columns;
-			var realRow = (this.number_of_rows + row) % this.number_of_rows;
+			var real_column = (this.number_of_columns + column) % this.number_of_columns;
+			var real_row = (this.number_of_rows + row) % this.number_of_rows;
 			
-			console.log(realColumn);
-			return this.cells[realColumn][realRow];
+			return this.cells[real_column][real_row];
 		}
 	};
 
@@ -47,18 +46,18 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		var real_range = Math.abs(range);
 		var half_range = Math.round(real_range * 0.5);
 		
-		var startColumn = column - half_range;
-		var endColumn = column + half_range;
+		var start_column = column - half_range;
+		var end_column = column + half_range;
 		
-		var startRow = row - half_range;
-		var endRow = row + half_range;
+		var start_row = row - half_range;
+		var end_row = row + half_range;
 		
 		result.cells = new Array();
 
 		if(range > 0) {
-			for(var i = startColumn; i <= endColumn; ++i) {
+			for(var i = start_column; i <= end_column; ++i) {
 				result.cells.push(new Array());
-				for(var j = startRow; j <= endRow; ++j) {
+				for(var j = start_row; j <= end_row; ++j) {
 					var cell = this.get_cell_at(i, j);
 					
 					if(i == column && j == row) {
@@ -70,8 +69,8 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 			}
 		}
 		
-		result.top = startRow;
-		result.left = startColumn;
+		result.top = start_row;
+		result.left = start_column;
 		result.width = real_range;
 		result.height = real_range;
 		return result;
