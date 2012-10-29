@@ -29,7 +29,7 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	// Neighbors and Cell Retrieval //
 	//------------------------------//
 	this.get_cell_at = function(column, row) {
-		if(this.cells.length == 0) {
+		if(this.cells.length === 0) {
 			this.init();
 			return this.get_cell_at(column, row);
 		} else {
@@ -53,21 +53,26 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		var end_row = row + half_range;
 		
 		result.cells = new Array();
+		
+		// caching outside loop
+		var push_cell = result.cells.push;
+		var get_cell = this.get_cell_at;
 
 		if(range > 0) {
 			var column_array = new Array();
 			for(var i = start_column; i <= end_column; ++i) {
+				var cell = null;
 				for(var j = start_row; j <= end_row; ++j) {
-					var cell = this.get_cell_at(i, j);
+					cell = get_cell(i, j);
 					
-					if(i == column && j == row) {
+					if(i === column && j === row) {
 						result.center = cell;
 					}
 					
 					column_array.push(cell);
 				}
 				
-				result.cells.push(column_array);
+				push_cell(column_array);
 				column_array = new Array();
 			}
 		}
