@@ -17,18 +17,19 @@ A two-dimensional CA with uniquely predetermined cell states between time (t) tr
 Probablistic CA
 -------
 
-The probablity of a tree-filled cell being struck by lighting are: undetermined.
+The probablity of a tree-filled cell being struck by lighting are: 0.03 percent
 
-The probablity of a tree-filled cell beside a burning tree-filled cell are: undetermined.
+The probablity of a tree-filled cell beside a burning tree-filled cell are: 6.65 percent
 
 The probablity of a land cell becoming a tree-filled cell are:
-	1. when neighbored by other tree-filled cells: undetermined.
-	2. when not neighbored by any tree-filled cells: undetermined.
+	1. when neighbored by other tree-filled cells: (2.5 * number of trees nearby) percent
+	2. when not neighbored by any tree-filled cells: 5 percent
 
 
 Notes
 -------
 
+This is a simplified CA model of fires spreading through forests, but with a few simple modifications could be made into almost any CA. By default the simulator will run forever, but can be instructed to run only a set number of times inside of the main function.
 
 For more awesome code, visit http://www.joshbyrom.com/
 
