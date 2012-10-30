@@ -9,8 +9,14 @@ var Cell = function (cellspace, column, row){
 	
 	this.get_state = function() {
 		return this.state || 'unknown';
-	}
+	};
 	
+  this.next_state = this.get_state();
+  this.enter_next_state = function() {
+    this.state = this.next_state;
+  };
+  
+  
 	//---------------------------------//
 	//		Neighbors
 	//---------------------------------//

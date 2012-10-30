@@ -50,6 +50,7 @@ var Logic = function(cellspace) {
 	};
 	
 	this.handle_cell = function(cell) {
+    cell.enter_next_state();
 		var state = cell.get_state();
 		
 		if(state === 'unknown' || state === 'empty-land') {
@@ -65,9 +66,9 @@ var Logic = function(cellspace) {
   
   this.roll = function(cell, threshold, above, below) {
     if(Math.random() >= threshold) {
-      cell.state = above;
+      cell.next_state = above;
     } else {
-      cell.state = below;
+      cell.next_state = below;
     }
   };
 }
