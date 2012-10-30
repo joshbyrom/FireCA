@@ -31,6 +31,7 @@ Notes
 
 This is a simplified CA model of fires spreading through forests, but with a few simple modifications could be made into almost any CA. By default the simulator will run forever, but can be instructed to run only a set number of times inside of the main function.
 
+For a live example (as of 10/20/2012), visit: http://joshbyrom.com/CA/FireCA/
 For more awesome code, visit http://www.joshbyrom.com/
 
                                                                        
