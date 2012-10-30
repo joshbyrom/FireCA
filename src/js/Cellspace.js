@@ -5,8 +5,7 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	this.number_of_columns = Math.max(number_of_columns, 1);
 	this.number_of_rows = Math.max(number_of_rows, 1);
 	
-	this.cells = [];
-	
+  this.cells = [];
 	//-----------------------------//
 	//			Initialization
 	//-----------------------------//
@@ -29,6 +28,8 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 	// Neighbors and Cell Retrieval //
 	//------------------------------//
 	this.get_cell_at = function(column, row) {
+		if(this.cells === undefined) this.init();
+		
 		if(this.cells.length === 0) {
 			this.init();
 			return this.get_cell_at(column, row);
@@ -53,17 +54,13 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 		var end_row = row + half_range;
 		
 		result.cells = new Array();
-		
-		// caching outside loop
-		var push_cell = result.cells.push;
-		var get_cell = this.get_cell_at;
 
 		if(range > 0) {
 			var column_array = new Array();
 			for(var i = start_column; i <= end_column; ++i) {
 				var cell = null;
 				for(var j = start_row; j <= end_row; ++j) {
-					cell = get_cell(i, j);
+					cell = this.get_cell_at(i, j);
 					
 					if(i === column && j === row) {
 						result.center = cell;
@@ -72,7 +69,7 @@ var Cellspace = function(number_of_columns, number_of_rows) {
 					column_array.push(cell);
 				}
 				
-				push_cell(column_array);
+				result.cells.push(column_array);
 				column_array = new Array();
 			}
 		}

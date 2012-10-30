@@ -26,6 +26,24 @@ var Cell = function (cellspace, column, row){
 		
 		return this.neighbors.range;
 	};
+	
+	this.get_neighbors_in_state = function(range, state) {
+		var neighbors = this.get_neighbors(range);
+		
+		var result = new Array();
+		if(neighbors.length === 0) return result;
+		
+		for(var i = 0; i < neighbors.length; ++i) {
+			for(var j = 0; j < neighbors[i].length; ++j) {
+				if(neighbors[i][j].get_state() === state) {
+					result.push(neighbors[i][j]);
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	// -- end of neighbors section
 	
 	this.as_string = function() {

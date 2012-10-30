@@ -13,6 +13,7 @@ var Simulation = function(logic, view) {
 	
 	this.step = function(t) {
 		(function(fun, t) {
+			fun.logic.update();
 			fun.view.draw();
 			
 			if(fun.running && (fun.infinite || t < fun.repeats)) {

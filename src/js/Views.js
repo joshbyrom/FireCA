@@ -11,9 +11,9 @@ var View = function(cellspace, canvas) {
 	
 	this.fill_colors = {
 		'unknown' : 'white',
-		'tree-filled' : 'green',
+		'tree-filled-land' : 'green',
 		'empty-land' : '#CC9900',
-		'on-fire' : '#FF0000',
+		'on-fire' : '#FF0000'
 	};
 	
 	this.min_width = 5;
@@ -25,7 +25,7 @@ var View = function(cellspace, canvas) {
 		
 		this.cell_width = Math.max(this.cell_width, this.min_width);
 		this.cell_height = Math.max(this.cell_height, this.min_height);
-	}
+	};
 	
 	this.set_width_height();
 	
@@ -44,19 +44,18 @@ var View = function(cellspace, canvas) {
 		
 		this.context.fill();
 		this.context.stroke();
-	}
+	};
 	
 	this.draw = function() {
-		var cells = this.cellspace.cells;
 		var xlen = this.cellspace.number_of_columns;
 		var ylen = this.cellspace.number_of_rows;
 		
 		var cell = null;
 		for(var x = 0; x < xlen; ++x) {
 			for(var y = 0; y < ylen; ++y) {
-				cell = cellspace.get_cell_at(x, y);
+				cell = this.cellspace.get_cell_at(x, y);
 				this.draw_cell(cell);
 			}
 		}
-	}
+	};
 }
